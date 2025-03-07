@@ -13,7 +13,7 @@ ListNode* create_List(int le) {
     ListNode *p_begin = new ListNode;
     ListNode* p, n;
     p = p_begin;
-    for (int i = 0; i < le; i++)
+    for (int i = 1; i <= le; i++)
     {
         p->next = new ListNode;
         p->data = rand()%1000;
@@ -68,17 +68,18 @@ void remove_Node(ListNode*& p_begin,int number_i) {
         delete p->next->next;
         n->next = nullptr;
     }
-    else {
-        if (number_i <= 0) {
-            delete p_begin;
-            p_begin = p->next;
+    if (number_i <= 1) {
+        ListNode* t = p_begin;
+        p_begin = p_begin->next;
+        delete t;
+
         }
-        else {
+    else {
             cout<<get_length_List(p_begin)<<endl;
            
             ListNode* p = p_begin;
             
-            for (int i = 0; i < number_i - 2; i++) {
+            for (int i = 1; i < number_i - 1; i++) {
                 p = p->next;
             }
             ListNode* d = p->next; 
@@ -103,7 +104,7 @@ void remove_Node(ListNode*& p_begin,int number_i) {
 
         }
 
-    }
+   
 }
 void add_Node_back(ListNode* p_begin, int x) {
     ListNode* p;
@@ -121,7 +122,7 @@ void add_Node_back(ListNode* p_begin, int x) {
 
 
 }
-void add_Node_begin(ListNode*& p_begin, int x) {
+void add_Node_begin(ListNode*   &p_begin, int x) {
     ListNode* p;
     ListNode* n;
     ListNode* asd;
@@ -144,12 +145,12 @@ void add_Node(ListNode* &p_begin, int number_i,int x) {
         add_Node_back(p_begin, x);
     }
     else {
-        if (number_i <=0) {
+        if (number_i <= 1) {
             add_Node_begin(p_begin, x);
         }
         else {
             p = p_begin;
-            for (int i = 1; i <= number_i-2; i++)
+            for (int i = 1; i < number_i-1; i++)
             {
                     p = p->next;
                
@@ -258,6 +259,12 @@ int main()
             cout << "Thank for using" << endl;
             cout << "GoodBye" << endl;
             k = false;
+            break;
+        case -1:
+            cout << get_length_List(p_list) << endl;
+
+           // cout << "GoodBye" << endl;
+            //k = false;
             break;
         default:
             break;
