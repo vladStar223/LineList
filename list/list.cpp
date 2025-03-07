@@ -68,25 +68,26 @@ void remove_Node(ListNode*& p_begin,int number_i) {
         delete p->next->next;
         n->next = nullptr;
     }
-    if (number_i <= 1) {
-        ListNode* t = p_begin;
-        p_begin = p_begin->next;
-        delete t;
+    else {
+        if (number_i <= 1) {
+            ListNode* t = p_begin;
+            p_begin = p_begin->next;
+            delete t;
 
         }
-    else {
-            cout<<get_length_List(p_begin)<<endl;
-           
+        else {
+            cout << get_length_List(p_begin) << endl;
+
             ListNode* p = p_begin;
-            
+
             for (int i = 1; i < number_i - 1; i++) {
                 p = p->next;
             }
-            ListNode* d = p->next; 
+            ListNode* d = p->next;
             p->next = d->next;
             delete d;
             /*
-            
+
                 p = p_begin;
                 for (int i = 1; i <= number_i - 2; i++)
                 {
@@ -98,11 +99,13 @@ void remove_Node(ListNode*& p_begin,int number_i) {
                 d->next = d->next->next;
                 //delete d->next;
                 */
-           
-            
-            //cout << p->data << endl;
+
+
+                //cout << p->data << endl;
 
         }
+    }
+    
 
    
 }
