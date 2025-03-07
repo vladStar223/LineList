@@ -66,6 +66,7 @@ void remove_Node(ListNode*& p_begin,int number_i) {
         }
         n = p;
         delete p->next->next;
+        //cout << n->next->next << endl;
         n->next = nullptr;
     }
     else {
