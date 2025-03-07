@@ -69,7 +69,7 @@ void remove_Node(ListNode*& p_begin,int number_i) {
         n->next = nullptr;
     }
     else {
-        if (number_i <= 1) {
+        if (number_i <= 0) {
             delete p_begin;
             p_begin = p->next;
         }
@@ -231,7 +231,7 @@ int main()
                 cout << "Please input place" << endl;
                 int place = 0;
                 cin >> place;
-                place--;
+                //place--;
                 add_Node(p_list, place, elem);
             }
             else {
