@@ -205,6 +205,29 @@ void remove_Node(ListNode*& p_begin, int number_i) {
 
 
 }
+int zadanie2(ListNode*& p_begin) {
+    int s = 0;
+    ListNode* p;
+    ListNode* n;
+    p = p_begin;
+    n = p_begin;
+    while (p->next != nullptr) {
+        //cout << p->next << endl;
+        //cout << p->data << endl;
+        p = p->next;
+    }
+    p = p->before;
+    while (n->next != nullptr) {
+        //cout << p->next << endl;
+        s =  s +  n->data* p->data;
+        //cout << n->data << " " << p->data << endl;
+        p = p->before;
+        n = n->next;
+        //cout << p->data << endl;
+
+    }
+    return s;
+}
         int main(){
                 srand(time(NULL));
                 ListNode* p_list = nullptr;
@@ -299,8 +322,18 @@ void remove_Node(ListNode*& p_begin, int number_i) {
                         break;
                     case 0:
                         cout << "Thank for using" << endl;
-                        cout << "GoodBye" << endl;
-                        k = false;
+                        cout << "Solve zadanie 2" << endl;
+                        if (get_length_List(p_list) % 2 == 0) {
+                            cout << zadanie2(p_list) << endl;;
+                            cout << "GoodBye" << endl;
+                            k = false;
+                        }
+                        else {
+                            cout << "length must be chetnoe" << endl;
+                            cout << "Current length" <<" " << get_length_List(p_list) << endl;
+                            k = true;
+                        }
+                       
                         break;
                     case -1:
                         cout << get_length_List(p_list) << endl;
