@@ -146,8 +146,64 @@ void add_Node(ListNode*& p_begin, int number_i, int x) {
 
 
 }
+void remove_Node(ListNode*& p_begin, int number_i) {
 
-            int main(){
+    ListNode* p;
+    ListNode* n;
+    p = p_begin;
+    if (number_i >= get_length_List(p_begin)) {
+        p = p_begin;
+        for (int i = 1; i < get_length_List(p_begin); i++)
+        {
+            p = p->next;
+
+        }
+        n = p;
+        delete p->next->next;
+        n->next = nullptr;
+    }
+    else {
+        if (number_i <= 1) {
+            ListNode* t = p_begin;
+            p_begin = p_begin->next;
+            delete t;
+
+        }
+        else {
+            cout << get_length_List(p_begin) << endl;
+
+            ListNode* p = p_begin;
+
+            for (int i = 1; i < number_i - 1; i++) {
+                p = p->next;
+            }
+            ListNode* d = p->next;
+            p->next = d->next;
+            delete d;
+            /*
+
+                p = p_begin;
+                for (int i = 1; i <= number_i - 2; i++)
+                {
+                    p = p->next;
+
+                }
+                ListNode* d;
+                d = p;
+                d->next = d->next->next;
+                //delete d->next;
+                */
+
+
+                //cout << p->data << endl;
+
+        }
+    }
+
+
+
+}
+int main(){
                 srand(time(NULL));
                 ListNode* p_list = nullptr;
                 cout << "Hello user" << endl;
@@ -163,7 +219,7 @@ void add_Node(ListNode*& p_begin, int number_i, int x) {
                     cout << "3 is print Listback" << endl;
                     cout << "4 delete List" << endl;
                     cout << "5 is add new element to List" << endl;
-                    cout << "5 is delete  element from List" << endl;
+                    cout << "6 is delete  element from List" << endl;
                     cout << "0 is finish" << endl;
 
                     cin >> op;
