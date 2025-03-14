@@ -1,4 +1,4 @@
-﻿//// list.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// list.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <iostream>
@@ -66,7 +66,6 @@ void remove_Node(ListNode*& p_begin, int number_i) {
         }
         n = p;
         delete p->next->next;
-        //cout << n->next->next << endl;
         n->next = nullptr;
     }
     else {
@@ -105,8 +104,10 @@ void remove_Node(ListNode*& p_begin, int number_i) {
                 //cout << p->data << endl;
 
         }
+    }
 
-   
+
+
 }
 void add_Node_back(ListNode* p_begin, int x) {
     ListNode* p;
