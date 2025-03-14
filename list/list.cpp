@@ -7,27 +7,49 @@ using namespace std;
 struct ListNode
 {
     ListNode* next = nullptr;
+    ListNode* before = nullptr;
     int data = 0;
 };
 ListNode* create_List(int le) {
     ListNode *p_begin = new ListNode;
-    ListNode* p, n;
+    ListNode* p;
+    ListNode* n;
     p = p_begin;
     for (int i = 1; i <= le; i++)
     {
         p->next = new ListNode;
-        p->data = rand()%1000;
+        p->data = rand() % 1000;
+        p->next->before = p;
         p = p->next;
+        //p->next = new ListNode;
+        //p->data = rand()%1000;
+        //p = p->next;
     }
     return p_begin;
 }
-void print_List(ListNode* p_begin) {
+void print_ListBegin(ListNode* p_begin) {
     ListNode* p, n;
     p = p_begin;
     while (p->next != nullptr) {
         //cout << p->next << endl;
         cout << p->data << endl;
         p = p->next;
+    }
+}
+
+void print_ListBack(ListNode* p_begin) {
+    ListNode* p, n;
+    p = p_begin;
+    while (p->next != nullptr) {
+        //cout << p->next << endl;
+        //cout << p->data << endl;
+        p = p->next;
+    }
+    while (p->before != nullptr) {
+        //cout << p->next << endl;
+        p = p->before;
+        cout << p->data << endl;
+        
     }
 }
 int get_length_List(ListNode* p_begin) {
@@ -42,7 +64,7 @@ int get_length_List(ListNode* p_begin) {
     }
     return i;
 }
-void delete_List(ListNode* &p_begin) {
+void delete_List(ListNode*& p_begin) {
     ListNode* p = p_begin;
     while (p != nullptr) {
         ListNode* n = p->next; // Сохраняем следующий узел
@@ -52,8 +74,76 @@ void delete_List(ListNode* &p_begin) {
     p_begin = nullptr;
     //return nullptr;
 }
+void add_Node_back(ListNode* p_begin, int x) {
+    ListNode* p;
+    ListNode* n;
+    p = p_begin;
+    while (p->next != nullptr) {
+        p = p->next;
+    }
+    p->next = new ListNode;
+    p->data = x;
+    p->next->before = p->next;
+    p->next->next = nullptr;
+    // cout << p->next << endl;
+
+     //cout << p->next << endl;
+
+
+}
+void add_Node_begin(ListNode*& p_begin, int x) {
+    ListNode* p;
+    ListNode* n;
+    ListNode* asd;
+    asd = new ListNode;
+    p = p_begin;
+    asd->data = x;
+    asd->next = p;
+    p_begin = asd;
+    // cout << p->next << endl;
+
+     //cout << p->next << endl;
+
+
+}
+void add_Node(ListNode*& p_begin, int number_i, int x) {
+    ListNode* p;
+    ListNode* n;
+    p = p_begin;
+    if (number_i >= get_length_List(p_begin)) {
+        add_Node_back(p_begin, x);
+    }
+    else {
+        if (number_i <= 1) {
+            add_Node_begin(p_begin, x);
+        }
+        else {
+            p = p_begin;
+            for (int i = 1; i < number_i - 1; i++)
+            {
+                p = p->next;
+
+            }
+            ListNode* asd = new ListNode;
+            asd->data = x;
+            asd->next = p->next->next;
+            p->next = asd;
+
+            //cout << p->data << endl;
+
+        }
+
+    }
+
+
+
+
+
+}
+/*
+
 void remove_Node(ListNode*& p_begin,int number_i) {
-    
+
     ListNode* p;
     ListNode* n;
     p = p_begin;
@@ -99,82 +189,20 @@ void remove_Node(ListNode*& p_begin,int number_i) {
                 d = p;
                 d->next = d->next->next;
                 //delete d->next;
-                */
 
 
                 //cout << p->data << endl;
 
         }
     }
-    
 
-   
-}
-void add_Node_back(ListNode* p_begin, int x) {
-    ListNode* p;
-    ListNode* n;
-    p = p_begin;
-    while (p->next != nullptr) {
-        p = p->next;
-    }
-    p->next = new ListNode;
-    p->data = x;
-    p->next->next = nullptr;
-    // cout << p->next << endl;
-
-     //cout << p->next << endl;
 
 
 }
-void add_Node_begin(ListNode*   &p_begin, int x) {
-    ListNode* p;
-    ListNode* n;
-    ListNode* asd;
-    asd = new ListNode;
-    p = p_begin;
-    asd->data = x;
-    asd->next = p;
-    p_begin = asd;
-    // cout << p->next << endl;
-
-     //cout << p->next << endl;
 
 
-}
-void add_Node(ListNode* &p_begin, int number_i,int x) {
-    ListNode* p;
-    ListNode* n;
-    p = p_begin;
-    if (number_i >= get_length_List(p_begin) ){
-        add_Node_back(p_begin, x);
-    }
-    else {
-        if (number_i <= 1) {
-            add_Node_begin(p_begin, x);
-        }
-        else {
-            p = p_begin;
-            for (int i = 1; i < number_i-1; i++)
-            {
-                    p = p->next;
-               
-            }
-            ListNode* asd = new ListNode;
-            asd->data = x;
-            asd->next = p->next->next;
-            p->next = asd;
 
-            //cout << p->data << endl;
-
-        }
-        
-    }
-    
-    
-   
-
-
-}
+*/
 
 
 int main()
@@ -190,9 +218,10 @@ int main()
         cout << "Choose operations" << endl;
        
         cout << "1 is Create List" << endl;
-        cout << "2 is print List" << endl;
-        cout << "3 is delete List" << endl;
-        cout << "4 is add new element to List" << endl;
+        cout << "2 is print Listbegin" << endl;
+        cout << "3 is print Listback" << endl;
+        cout << "4 delete List" << endl;
+        cout << "5 is add new element to List" << endl;
         cout << "5 is delete  element from List" << endl;
         cout << "0 is finish" << endl;
 
@@ -207,9 +236,9 @@ int main()
             cout << "Creation is done" << endl;
             break;
         case 2:
-            cout << "Print List" << endl;
+            cout << "Print List Begin" << endl;
             if (p_list != nullptr) {
-                print_List(p_list);
+               print_ListBegin(p_list);
                 cout << "Print is done" << endl;
             }
             else {
@@ -218,9 +247,9 @@ int main()
             }
             break;
         case 3:
-            cout << "delete List" << endl;
+            cout << "Print List Back" << endl;
             if (p_list != nullptr) {
-                delete_List(p_list);
+                print_ListBack(p_list);
             }
             else {
                 cout << "Error " << endl;
@@ -228,16 +257,11 @@ int main()
             }
             break;
         case 4:
-            cout << "Add new element to  List" << endl;
+            cout << "Delete List" << endl;
             if (p_list != nullptr) {
-                cout << "Please input number that you add  " << endl;
-                int elem = 0;
-                cin >> elem;
-                cout << "Please input place" << endl;
-                int place = 0;
-                cin >> place;
+                delete_List(p_list);
                 //place--;
-                add_Node(p_list, place, elem);
+                //add_Node(p_list, place, elem);
             }
             else {
                 cout << "Error " << endl;
@@ -246,13 +270,14 @@ int main()
             
             break;
         case 5:
-            cout << "delete  element from List" << endl;
+            cout << "add  element to List" << endl;
             if (p_list != nullptr) {
                 cout << "Please input place" << endl;
                 int place = 0;
                 cin >> place;
                 //place++;
-                remove_Node(p_list, place);
+                //remove_Node(p_list, place);
+                //add_Node(p_list, place);
             }
             else {
                 cout << "Error " << endl;
