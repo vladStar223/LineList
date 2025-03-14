@@ -129,9 +129,12 @@ void add_Node(ListNode*& p_begin, int number_i, int x) {
             }
             ListNode* asd = new ListNode;
             asd->data = x;
-            asd->next = p->next->next;
+            asd->next = p->next;
+            //asd->next = p->next->next  неизвестно почему 
+            
+            p->next->before = asd;
+            asd->before = p;
             p->next = asd;
-
             //cout << p->data << endl;
 
         }
