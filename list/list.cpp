@@ -166,11 +166,12 @@ void remove_Node(ListNode*& p_begin, int number_i) {
         if (number_i <= 1) {
             ListNode* t = p_begin;
             p_begin = p_begin->next;
+            p_begin->before = nullptr;
             delete t;
 
         }
         else {
-            cout << get_length_List(p_begin) << endl;
+           // cout << get_length_List(p_begin) << endl;
 
             ListNode* p = p_begin;
 
@@ -179,6 +180,7 @@ void remove_Node(ListNode*& p_begin, int number_i) {
             }
             ListNode* d = p->next;
             p->next = d->next;
+            p->next->before = p;
             delete d;
             /*
 
@@ -203,7 +205,7 @@ void remove_Node(ListNode*& p_begin, int number_i) {
 
 
 }
-int main(){
+        int main(){
                 srand(time(NULL));
                 ListNode* p_list = nullptr;
                 cout << "Hello user" << endl;
@@ -275,6 +277,20 @@ int main(){
                             cin >> place;
                             //place--;
                             add_Node(p_list, place, elem);
+                        }
+                        else {
+                            cout << "Error " << endl;
+                            cout << "List is null" << endl;
+                        }
+                        break;
+                    case 6:
+                        cout << "delete  element from List" << endl;
+                        if (p_list != nullptr) {
+                            cout << "Please input place" << endl;
+                            int place = 0;
+                            cin >> place;
+                            //place++;
+                            remove_Node(p_list, place);
                         }
                         else {
                             cout << "Error " << endl;
