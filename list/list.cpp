@@ -1,4 +1,4 @@
-﻿// list.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿//// list.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <iostream>
@@ -10,13 +10,13 @@ struct ListNode
     int data = 0;
 };
 ListNode* create_List(int le) {
-    ListNode *p_begin = new ListNode;
+    ListNode* p_begin = new ListNode;
     ListNode* p, n;
     p = p_begin;
     for (int i = 1; i <= le; i++)
     {
         p->next = new ListNode;
-        p->data = rand()%1000;
+        p->data = rand() % 1000;
         p = p->next;
     }
     return p_begin;
@@ -42,7 +42,7 @@ int get_length_List(ListNode* p_begin) {
     }
     return i;
 }
-void delete_List(ListNode* &p_begin) {
+void delete_List(ListNode*& p_begin) {
     ListNode* p = p_begin;
     while (p != nullptr) {
         ListNode* n = p->next; // Сохраняем следующий узел
@@ -52,8 +52,8 @@ void delete_List(ListNode* &p_begin) {
     p_begin = nullptr;
     //return nullptr;
 }
-void remove_Node(ListNode*& p_begin,int number_i) {
-    
+void remove_Node(ListNode*& p_begin, int number_i) {
+
     ListNode* p;
     ListNode* n;
     p = p_begin;
@@ -105,8 +105,6 @@ void remove_Node(ListNode*& p_begin,int number_i) {
                 //cout << p->data << endl;
 
         }
-    }
-    
 
    
 }
@@ -126,7 +124,7 @@ void add_Node_back(ListNode* p_begin, int x) {
 
 
 }
-void add_Node_begin(ListNode*   &p_begin, int x) {
+void add_Node_begin(ListNode*& p_begin, int x) {
     ListNode* p;
     ListNode* n;
     ListNode* asd;
@@ -141,11 +139,11 @@ void add_Node_begin(ListNode*   &p_begin, int x) {
 
 
 }
-void add_Node(ListNode* &p_begin, int number_i,int x) {
+void add_Node(ListNode*& p_begin, int number_i, int x) {
     ListNode* p;
     ListNode* n;
     p = p_begin;
-    if (number_i >= get_length_List(p_begin) ){
+    if (number_i >= get_length_List(p_begin)) {
         add_Node_back(p_begin, x);
     }
     else {
@@ -154,10 +152,10 @@ void add_Node(ListNode* &p_begin, int number_i,int x) {
         }
         else {
             p = p_begin;
-            for (int i = 1; i < number_i-1; i++)
+            for (int i = 1; i < number_i - 1; i++)
             {
-                    p = p->next;
-               
+                p = p->next;
+
             }
             ListNode* asd = new ListNode;
             asd->data = x;
@@ -167,11 +165,11 @@ void add_Node(ListNode* &p_begin, int number_i,int x) {
             //cout << p->data << endl;
 
         }
-        
+
     }
-    
-    
-   
+
+
+
 
 
 }
@@ -188,7 +186,7 @@ int main()
     do
     {
         cout << "Choose operations" << endl;
-       
+
         cout << "1 is Create List" << endl;
         cout << "2 is print List" << endl;
         cout << "3 is delete List" << endl;
@@ -243,7 +241,7 @@ int main()
                 cout << "Error " << endl;
                 cout << "List is null" << endl;
             }
-            
+
             break;
         case 5:
             cout << "delete  element from List" << endl;
@@ -267,8 +265,8 @@ int main()
         case -1:
             cout << get_length_List(p_list) << endl;
 
-           // cout << "GoodBye" << endl;
-            //k = false;
+            // cout << "GoodBye" << endl;
+             //k = false;
             break;
         default:
             break;
@@ -276,7 +274,7 @@ int main()
 
     } while (k);
     /*
-    * 
+    *
     * //ListNode*  p_list = create_List(6);
     //print_List(p_list);
     //ListNode* p_list2 = new ListNode;
@@ -296,10 +294,10 @@ int main()
     //delete_List(p_list);
     //cout << p_list << endl;
     //print_List(p_list2);
-    * 
-    * 
+    *
+    *
     \*/
-    
+
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
