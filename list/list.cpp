@@ -83,7 +83,8 @@ void add_Node_back(ListNode* p_begin, int x) {
     }
     p->next = new ListNode;
     p->data = x;
-    p->next->before = p->next;
+    p->next->before = p;
+   // p->before = p->next;
     p->next->next = nullptr;
     // cout << p->next << endl;
 
@@ -95,10 +96,12 @@ void add_Node_begin(ListNode*& p_begin, int x) {
     ListNode* p;
     ListNode* n;
     ListNode* asd;
-    asd = new ListNode;
     p = p_begin;
+    asd = new ListNode;
     asd->data = x;
     asd->next = p;
+    asd->before = nullptr;
+    p->before = asd;
     p_begin = asd;
     // cout << p->next << endl;
 
@@ -127,6 +130,7 @@ void add_Node(ListNode*& p_begin, int number_i, int x) {
             ListNode* asd = new ListNode;
             asd->data = x;
             asd->next = p->next->next;
+            //asd->before = p->next;
             p->next = asd;
 
             //cout << p->data << endl;
@@ -260,8 +264,6 @@ int main()
             cout << "Delete List" << endl;
             if (p_list != nullptr) {
                 delete_List(p_list);
-                //place--;
-                //add_Node(p_list, place, elem);
             }
             else {
                 cout << "Error " << endl;
@@ -272,12 +274,14 @@ int main()
         case 5:
             cout << "add  element to List" << endl;
             if (p_list != nullptr) {
+                cout << "Please input number that you add  " << endl;
+                int elem = 0;
+                cin >> elem;
                 cout << "Please input place" << endl;
                 int place = 0;
                 cin >> place;
-                //place++;
-                //remove_Node(p_list, place);
-                //add_Node(p_list, place);
+                //place--;
+                add_Node(p_list, place, elem);
             }
             else {
                 cout << "Error " << endl;
